@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -25,21 +24,21 @@ public class MainActivity extends AppCompatActivity {
     WallpaperManager wallpaperManager;
 
     Integer[] Integers = {
-            R.drawable.WallpapersSpaceHDOuter1,
-            R.drawable.WallpapersSpaceHDOuter2,
-            R.drawable.WallpapersSpaceHDOuter3,
-            R.drawable.WallpapersSpaceHDOuter4,
-            R.drawable.WallpapersSpaceHDOuter5,
-            R.drawable.WallpapersSpaceHDOuter6,
-            R.drawable.WallpapersSpaceHDOuter7,
-            R.drawable.WallpapersSpaceHDOuter8,
-            R.drawable.WallpapersSpaceHDOuter9,
-            R.drawable.WallpapersSpaceHDOuter10,
-            R.drawable.WallpapersSpaceHDOuter11,
-            R.drawable.WallpapersSpaceHDOuter12,
-            R.drawable.WallpapersSpaceHDOuter13,
-            R.drawable.WallpapersSpaceHDOuter14,
-            R.drawable.WallpapersSpaceHDOuter15,
+            R.drawable.wallpapersspacehdouter1,
+            R.drawable.wallpapersspacehdouter2,
+            R.drawable.wallpapersspacehdouter3,
+            R.drawable.wallpapersspacehdouter4,
+            R.drawable.wallpapersspacehdouter5,
+            R.drawable.wallpapersspacehdouter6,
+            R.drawable.wallpapersspacehdouter7,
+            R.drawable.wallpapersspacehdouter8,
+            R.drawable.wallpapersspacehdouter9,
+            R.drawable.wallpapersspacehdouter10,
+            R.drawable.wallpapersspacehdouter11,
+            R.drawable.wallpapersspacehdouter12,
+            R.drawable.wallpapersspacehdouter13,
+            R.drawable.wallpapersspacehdouter14,
+            R.drawable.wallpapersspacehdouter15,
 
     };
 
@@ -57,13 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private void UpdateWallpaper() {
         wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
         drawable = wallpaperManager.getDrawable();
@@ -72,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     public class Adapter extends BaseAdapter {
 
-        private Context mContext;
+        private final Context mContext;
 
         public Adapter(Context context) {
             mContext = context;
@@ -106,19 +99,16 @@ public class MainActivity extends AppCompatActivity {
                 gridImageView = (ImageView) view;
             }
             gridImageView.setImageResource(Integers[i]);
-            gridImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            gridImageView.setOnClickListener(view1 -> {
 
-                    try {
-                        wallpaperManager.setResource(Integers[i]);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                try {
+                    wallpaperManager.setResource(Integers[i]);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
-                    UpdateWallpaper();
+                UpdateWallpaper();
 
-                    }
                 });
 
             return gridImageView;
