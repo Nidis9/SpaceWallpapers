@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/purple_500"
     tools:context=".MainActivity">
 
     <ImageView
@@ -19,10 +20,12 @@
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:numColumns="auto_fit"
-        android:stretchMode="spacingWidth"
-        android:verticalSpacing="1dp"
-        android:columnWidth="200dp" />
+        android:numColumns="2"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:paddingStart="10dp"
+        android:background="@color/purple_500"
+        android:columnWidth="200dp"
+        tools:ignore="RtlSymmetry" />
 
 </LinearLayout>
